@@ -30,7 +30,7 @@ qdarktheme
 
 1. Clone this repository:
 ```bash
-git clone https://github.com/cry4pt/nightreign-save-transfer.git
+git clone https://github.com/cry4pt/-ERNR-Save-Transfer-Tool.git
 cd nightreign-save-transfer
 ```
 
@@ -41,7 +41,7 @@ pip install PySide6 cryptography qdarktheme
 
 3. Run the application:
 ```bash
-python save_transfer_tool.py
+python decry4pt.py
 ```
 
 ## Usage
