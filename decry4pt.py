@@ -9,7 +9,6 @@ from PySide6.QtWidgets import (QApplication, QMainWindow, QPushButton, QFileDial
 from PySide6.QtCore import Qt, QThread, Signal
 from PySide6.QtGui import QFont, QColor
 
-# Constants
 DS2_KEY = b'\x18\xF6\x32\x66\x05\xBD\x17\x8A\x55\x24\x52\x3A\xC0\xA0\xC6\x09'
 DEBUG_MODE = True
 IV_SIZE = 0x10
@@ -17,7 +16,6 @@ PADDING_SIZE = 0xC
 START_OF_CHECKSUM_DATA = 4
 END_OF_CHECKSUM_DATA = PADDING_SIZE + 16
 
-# Global variables
 original_sl2_path = None
 bnd4_entries = []
 
@@ -441,7 +439,7 @@ class SteamIDDialog(QDialog):
         self.steam_id_entry.setFocus()
     
     def setup_style(self):
-        pass  # Removed light background stylesheet
+        pass  
     
     def validate_steam_id(self):
         text = self.steam_id_entry.text()
@@ -618,7 +616,7 @@ class SaveTransferWindow(QMainWindow):
         central_widget.setLayout(main_layout)
     
     def setup_style(self):
-        pass  # Removed light background stylesheet
+        pass  
     
     def center_window(self):
         screen = QApplication.primaryScreen().geometry()
@@ -695,7 +693,6 @@ class SaveTransferWindow(QMainWindow):
             msg_box.setText("Save file transfer completed successfully!")
             msg_box.setDetailedText(message)
             msg_box.setIcon(QMessageBox.Information)
-            # Removed custom stylesheet to use theme styling
             msg_box.exec()
         else:
             msg_box = QMessageBox(self)
@@ -703,13 +700,12 @@ class SaveTransferWindow(QMainWindow):
             msg_box.setText("An error occurred during the transfer process.")
             msg_box.setDetailedText(message)
             msg_box.setIcon(QMessageBox.Critical)
-            # Removed custom stylesheet to use theme styling
             msg_box.exec()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    qdarktheme.setup_theme("light")  # Apply dark theme
-    app.setStyle('Fusion')  # Optional, as qdarktheme sets it
+    qdarktheme.setup_theme("light")  
+    app.setStyle('Fusion') 
     
     font = QFont("Segoe UI", 9)
     app.setFont(font)
