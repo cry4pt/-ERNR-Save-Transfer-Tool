@@ -30,8 +30,8 @@ qdarktheme
 
 1. Clone this repository:
 ```bash
-git clone https://github.com/cry4pt/-ERNR-Save-Transfer-Tool.git
-cd -ERNR-Save-Transfer-Tool
+git clone https://github.com/cry4pt/Save-Transfer-Tool.git
+cd Save-Transfer-Tool
 ```
 
 2. Install required dependencies:
