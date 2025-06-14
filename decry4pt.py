@@ -1,22 +1,13 @@
-import os
-import sys
-import struct
-import hashlib
-import json
-import glob
-import getpass
-import shutil
-import winreg
-import qdarktheme 
+import os, sys, struct, hashlib, json, glob, shutil, winreg, qdarktheme
 from datetime import datetime
-from typing import Optional, Dict
+from typing import Optional
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from PySide6.QtWidgets import (QApplication, QMainWindow, QPushButton, QFileDialog, 
                                QDialog, QVBoxLayout, QHBoxLayout, QLabel, QLineEdit, 
-                               QMessageBox, QWidget, QProgressBar, QFrame, QTextEdit,
+                               QMessageBox, QWidget, QProgressBar, QFrame,
                                QSpacerItem, QSizePolicy, QGraphicsDropShadowEffect)
-from PySide6.QtCore import Qt, QThread, Signal, QPropertyAnimation, QEasingCurve, QTimer, QRect
-from PySide6.QtGui import QFont, QPalette, QColor, QPixmap, QPainter, QLinearGradient, QIcon
+from PySide6.QtCore import Qt, QThread, Signal
+from PySide6.QtGui import QFont, QColor
 
 # Constants
 DS2_KEY = b'\x18\xF6\x32\x66\x05\xBD\x17\x8A\x55\x24\x52\x3A\xC0\xA0\xC6\x09'
@@ -717,7 +708,7 @@ class SaveTransferWindow(QMainWindow):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    qdarktheme.setup_theme("auto")  # Apply dark theme
+    qdarktheme.setup_theme("light")  # Apply dark theme
     app.setStyle('Fusion')  # Optional, as qdarktheme sets it
     
     font = QFont("Segoe UI", 9)
