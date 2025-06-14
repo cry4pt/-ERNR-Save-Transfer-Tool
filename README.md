@@ -31,7 +31,7 @@ qdarktheme
 1. Clone this repository:
 ```bash
 git clone https://github.com/cry4pt/-ERNR-Save-Transfer-Tool.git
-cd nightreign-save-transfer
+cd -ERNR-Save-Transfer-Tool
 ```
 
 2. Install required dependencies:
