@@ -28,7 +28,7 @@ qdarktheme
 
 1. Clone this repository:
 ```bash
-git clone https://github.com/yourusername/nightreign-save-transfer.git
+git clone https://github.com/cry4pt/nightreign-save-transfer.git
 cd nightreign-save-transfer
 ```
 
