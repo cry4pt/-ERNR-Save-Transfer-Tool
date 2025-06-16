@@ -1,6 +1,6 @@
 # Elden Ring: Nightreign Save Transfer Tool
 
-![image](https://github.com/user-attachments/assets/3190aaaf-d8fb-442a-9e46-b534cbfd47d6)
+![image](https://github.com/user-attachments/assets/6e2e8464-0b3b-4aef-afd2-350e6c58cbc7)
 
 A modern GUI application for transferring save files between Steam accounts for Elden Ring: Nightreign. This tool decrypts, modifies, and re-encrypts save files to change the embedded Steam ID, allowing you to move your progress between different Steam accounts.
 
