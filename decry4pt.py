@@ -9,6 +9,7 @@ from PySide6.QtWidgets import (QApplication, QMainWindow, QPushButton, QFileDial
 from PySide6.QtCore import Qt, QThread, Signal
 from PySide6.QtGui import QFont, QColor
 
+# Constants
 DS2_KEY = b'\x18\xF6\x32\x66\x05\xBD\x17\x8A\x55\x24\x52\x3A\xC0\xA0\xC6\x09'
 DEBUG_MODE = True
 IV_SIZE = 0x10
@@ -16,6 +17,7 @@ PADDING_SIZE = 0xC
 START_OF_CHECKSUM_DATA = 4
 END_OF_CHECKSUM_DATA = PADDING_SIZE + 16
 
+# Global variables
 original_sl2_path = None
 bnd4_entries = []
 
@@ -273,7 +275,7 @@ class ModernButton(QPushButton):
                 QPushButton {
                     background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
                         stop:0 #4CAF50, stop:1 #45a049);
-                    color: white;
+                    color: #ffffff;
                     border: none;
                     padding: 12px 24px;
                     border-radius: 8px;
@@ -291,17 +293,17 @@ class ModernButton(QPushButton):
                         stop:0 #45a049, stop:1 #3d8b40);
                 }
                 QPushButton:disabled {
-                    background: #cccccc;
-                    color: #666666;
+                    background: #666666;
+                    color: #aaaaaa;
                 }
             """)
         else:
             self.setStyleSheet("""
                 QPushButton {
                     background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
-                        stop:0 #f8f9fa, stop:1 #e9ecef);
-                    color: #495057;
-                    border: 2px solid #dee2e6;
+                        stop:0 #404040, stop:1 #333333);
+                    color: #e0e0e0;
+                    border: 2px solid #555555;
                     padding: 10px 20px;
                     border-radius: 8px;
                     font-size: 13px;
@@ -309,19 +311,19 @@ class ModernButton(QPushButton):
                 }
                 QPushButton:hover {
                     background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
-                        stop:0 #ffffff, stop:1 #f8f9fa);
-                    border-color: #adb5bd;
+                        stop:0 #505050, stop:1 #404040);
+                    border-color: #666666;
                 }
                 QPushButton:pressed {
                     background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
-                        stop:0 #e9ecef, stop:1 #dee2e6);
+                        stop:0 #333333, stop:1 #2a2a2a);
                 }
             """)
     
     def setup_effects(self):
         shadow = QGraphicsDropShadowEffect()
         shadow.setBlurRadius(10)
-        shadow.setColor(QColor(0, 0, 0, 60))
+        shadow.setColor(QColor(0, 0, 0, 80))
         shadow.setOffset(0, 2)
         self.setGraphicsEffect(shadow)
 
@@ -334,17 +336,21 @@ class ModernLineEdit(QLineEdit):
     def setup_style(self):
         self.setStyleSheet("""
             QLineEdit {
-                border: 2px solid #e9ecef;
+                border: 2px solid #555555;
                 border-radius: 8px;
                 padding: 12px 16px;
                 font-size: 14px;
-                color: #495057;
+                color: #e0e0e0;
+                background-color: #2a2a2a;
             }
             QLineEdit:focus {
                 border-color: #4CAF50;
             }
             QLineEdit:hover {
-                border-color: #adb5bd;
+                border-color: #666666;
+            }
+            QLineEdit::placeholder {
+                color: #888888;
             }
         """)
 
@@ -358,10 +364,10 @@ class ModernProgressBar(QProgressBar):
             QProgressBar {
                 border: none;
                 border-radius: 8px;
-                background-color: #e9ecef;
+                background-color: #333333;
                 text-align: center;
                 font-weight: bold;
-                color: #495057;
+                color: #e0e0e0;
                 height: 20px;
             }
             QProgressBar::chunk {
@@ -378,7 +384,6 @@ class SteamIDDialog(QDialog):
         self.setFixedSize(480, 280)
         self.setModal(True)
         self.setup_ui()
-        self.setup_style()
         if initial_steam_id:
             self.steam_id_entry.setText(initial_steam_id)
             self.validate_steam_id()
@@ -394,7 +399,7 @@ class SteamIDDialog(QDialog):
             QLabel {
                 font-size: 22px;
                 font-weight: bold;
-                color: #2c3e50;
+                color: #e0e0e0;
                 margin-bottom: 10px;
             }
         """)
@@ -406,7 +411,7 @@ class SteamIDDialog(QDialog):
         desc.setStyleSheet("""
             QLabel {
                 font-size: 13px;
-                color: #6c757d;
+                color: #b0b0b0;
                 margin-bottom: 20px;
             }
         """)
@@ -418,7 +423,7 @@ class SteamIDDialog(QDialog):
         
         self.validation_label = QLabel("")
         self.validation_label.setAlignment(Qt.AlignCenter)
-        self.validation_label.setStyleSheet("color: #dc3545; font-size: 12px;")
+        self.validation_label.setStyleSheet("color: #ff5555; font-size: 12px;")
         layout.addWidget(self.validation_label)
         
         button_layout = QHBoxLayout()
@@ -438,9 +443,6 @@ class SteamIDDialog(QDialog):
         self.steam_id_entry.textChanged.connect(self.validate_steam_id)
         self.steam_id_entry.setFocus()
     
-    def setup_style(self):
-        pass  
-    
     def validate_steam_id(self):
         text = self.steam_id_entry.text()
         if not text:
@@ -454,7 +456,7 @@ class SteamIDDialog(QDialog):
             self.submit_button.setEnabled(False)
         else:
             self.validation_label.setText("✓ Valid Steam ID")
-            self.validation_label.setStyleSheet("color: #28a745; font-size: 12px;")
+            self.validation_label.setStyleSheet("color: #55ff55; font-size: 12px;")
             self.submit_button.setEnabled(True)
     
     def validate_and_accept(self):
@@ -463,7 +465,7 @@ class SteamIDDialog(QDialog):
             self.accept()
         else:
             self.validation_label.setText("Please enter a valid 17-digit Steam ID")
-            self.validation_label.setStyleSheet("color: #dc3545; font-size: 12px;")
+            self.validation_label.setStyleSheet("color: #ff5555; font-size: 12px;")
     
     def get_steam_id(self):
         return self.steam_id_entry.text()
@@ -475,7 +477,6 @@ class SaveTransferWindow(QMainWindow):
         self.setFixedSize(600, 500)
         self.backup_folder = None
         self.setup_ui()
-        self.setup_style()
         self.center_window()
     
     def get_current_steam_id(self):
@@ -532,7 +533,7 @@ class SaveTransferWindow(QMainWindow):
             QLabel {
                 font-size: 28px;
                 font-weight: bold;
-                color: #2c3e50;
+                color: #e0e0e0;
                 margin-bottom: 5px;
             }
         """)
@@ -543,7 +544,7 @@ class SaveTransferWindow(QMainWindow):
         subtitle.setStyleSheet("""
             QLabel {
                 font-size: 16px;
-                color: #7f8c8d;
+                color: #b0b0b0;
                 margin-bottom: 20px;
             }
         """)
@@ -554,9 +555,10 @@ class SaveTransferWindow(QMainWindow):
         info_frame = QFrame()
         info_frame.setStyleSheet("""
             QFrame {
-                border: 1px solid #cccccc;
+                border: 1px solid #555555;
                 border-radius: 12px;
                 padding: 20px;
+                background-color: #2a2a2a;
             }
         """)
         
@@ -566,7 +568,7 @@ class SaveTransferWindow(QMainWindow):
         info_text.setStyleSheet("""
             QLabel {
                 font-size: 13px;
-                color: #495057;
+                color: #d0d0d0;
                 line-height: 1.4;
             }
         """)
@@ -582,7 +584,7 @@ class SaveTransferWindow(QMainWindow):
         self.status_label.setStyleSheet("""
             QLabel {
                 font-size: 14px;
-                color: #495057;
+                color: #e0e0e0;
                 margin-bottom: 10px;
             }
         """)
@@ -607,16 +609,13 @@ class SaveTransferWindow(QMainWindow):
         footer.setStyleSheet("""
             QLabel {
                 font-size: 12px;
-                color: #6c757d;
+                color: #b0b0b0;
                 margin-top: 10px;
             }
         """)
         main_layout.addWidget(footer)
         
         central_widget.setLayout(main_layout)
-    
-    def setup_style(self):
-        pass  
     
     def center_window(self):
         screen = QApplication.primaryScreen().geometry()
@@ -634,6 +633,9 @@ class SaveTransferWindow(QMainWindow):
         )
         return file_path if file_path else None
     
+    def prompt_for_save_location(self):
+        return QFileDialog.getExistingDirectory(self, "Select Save Location")
+    
     def start_process(self):
         input_file = self.get_input_file()
         if not input_file:
@@ -647,12 +649,39 @@ class SaveTransferWindow(QMainWindow):
         
         steam_id = dialog.get_steam_id()
         
+        # Default save location
         app_data_path = os.path.join(os.environ['APPDATA'], 'Nightreign')
-        save_dir = os.path.join(app_data_path, steam_id)
+        default_save_dir = os.path.join(app_data_path, steam_id)
         
+        # Check for custom save location in config
+        config_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'config.json')
+        custom_save_location = None
+        
+        if os.path.exists(config_path):
+            try:
+                with open(config_path, 'r') as f:
+                    config = json.load(f)
+                    custom_save_location = config.get('custom_save_location')
+            except json.JSONDecodeError:
+                debug("Invalid config.json, ignoring")
+        
+        # Determine save directory
+        if custom_save_location and os.path.exists(custom_save_location):
+            save_dir = custom_save_location
+        elif os.path.exists(default_save_dir):
+            save_dir = default_save_dir
+        else:
+            save_dir = self.prompt_for_save_location()
+            if not save_dir:
+                return  # User cancelled
+            # Save custom location to config
+            with open(config_path, 'w') as f:
+                json.dump({'custom_save_location': save_dir}, f)
+        
+        # Backup existing files
         if os.path.exists(save_dir):
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            self.backup_folder = os.path.join(app_data_path, f"backup_{timestamp}")
+            self.backup_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), f"backup_{timestamp}")
             os.makedirs(self.backup_folder, exist_ok=True)
             
             for file_name in ['NR0000.sl2', 'NR0000.sl2.bak', 'steam_autocloud.vdf']:
@@ -704,8 +733,8 @@ class SaveTransferWindow(QMainWindow):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    qdarktheme.setup_theme("light")  
-    app.setStyle('Fusion') 
+    qdarktheme.setup_theme("auto")
+    app.setStyle('Fusion')
     
     font = QFont("Segoe UI", 9)
     app.setFont(font)
